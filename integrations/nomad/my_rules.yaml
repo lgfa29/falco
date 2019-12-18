@@ -1,0 +1,5 @@
+- rule: nomad_command_executed
+  desc: a Nomad command was executed
+  condition: spawned_process and proc.name = nomad
+  output: "A Nomad command was executed (user=%user.uid command=%proc.cmdline)"
+  priority: INFO
