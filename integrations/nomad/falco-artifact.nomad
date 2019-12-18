@@ -14,8 +14,8 @@ job "falco" {
         args = ["/usr/bin/falco", "--disable-source", "k8s_audit"]
 
         # enable the following two lines in development to prevent log buffering
-        tty         = true
-        interactive = true
+        # tty         = true
+        # interactive = true
 
         volumes = [
           "/var/run/docker.sock:/host/var/run/docker.sock",
@@ -29,15 +29,12 @@ job "falco" {
       }
 
       artifact {
-        # the double slashes are used to fetch a specific file instead of the full repository
-        # https://github.com/hashicorp/go-getter#subdirectories
-        source = "https://github.com/lgfa29/falco.git//integrations/nomad/my_rules.yaml"
-
+        source      = "https://raw.githubusercontent.com/lgfa29/falco/nomad/integrations/nomad/my_rules.yaml"
         destination = "local/etc/falco/rules.d"
 
         options {
           # optional but recommended to make sure the file has not been tempered
-          checksum = "2107568e5a737292ac3105c6f4a4b4c6a617e736868f8432763bca2af9165703"
+          checksum = "sha256:4d18834dc5cfa5d1d058ce6053ecee90d6a6c4644b0f972b22f80cd8c53eff26"
         }
       }
     }

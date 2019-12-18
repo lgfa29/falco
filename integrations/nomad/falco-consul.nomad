@@ -14,8 +14,8 @@ job "falco" {
         args = ["/usr/bin/falco", "--disable-source", "k8s_audit"]
 
         # enable the following two lines in development to prevent log buffering
-        tty         = true
-        interactive = true
+        # tty         = true
+        # interactive = true
 
         volumes = [
           "/var/run/docker.sock:/host/var/run/docker.sock",
